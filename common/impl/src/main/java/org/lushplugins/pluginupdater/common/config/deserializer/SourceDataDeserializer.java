@@ -54,7 +54,7 @@ public class SourceDataDeserializer {
                 .map(String::toLowerCase)
                 .toList();
         } else {
-            releaseChannels = ModrinthSource.ReleaseChannel.ALL;
+            releaseChannels = Collections.singletonList(ModrinthSource.ReleaseChannel.RELEASE);
         }
 
         return new ModrinthSource.Data(

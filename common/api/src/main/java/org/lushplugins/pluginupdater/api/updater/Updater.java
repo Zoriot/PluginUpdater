@@ -195,7 +195,7 @@ public class Updater {
          * @param projectId The plugin's modrinth project id.
          */
         public Builder modrinth(String projectId) {
-            return source(new ModrinthSource.Data(projectId, ModrinthSource.ReleaseChannel.ALL));
+            return source(new ModrinthSource.Data(projectId, ModrinthSource.ReleaseChannel.RELEASE));
         }
 
         /**
