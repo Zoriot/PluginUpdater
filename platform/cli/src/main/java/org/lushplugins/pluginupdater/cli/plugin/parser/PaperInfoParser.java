@@ -7,4 +7,9 @@ public class PaperInfoParser extends BukkitInfoParser {
     public String getResourceName() {
         return "paper-plugin.yml";
     }
+
+    @Override
+    public InfoParser getFallbackInfoParser() {
+        return null;
+    }
 }
