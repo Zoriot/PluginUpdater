@@ -22,7 +22,8 @@ public class VelocityInfoParser implements InfoParser {
 
     @Override
     public String getName(Config config) {
-        return config.get("name");
+        String name = config.get("name");
+        return name == null ? config.get("id") : name;
     }
 
     @Override
