@@ -119,6 +119,7 @@ public class PluginUpdaterCLI implements UpdaterPlugin {
             );
         } catch (Exception e) {
             UpdaterConstants.LOGGER.log(Level.WARNING, "An error occurred while running the PluginUpdater CLI", e);
+            UpdaterConstants.LOGGER.log(Level.WARNING, e.getMessage());
         }
     }
 
