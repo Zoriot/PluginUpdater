@@ -107,7 +107,7 @@ public class ConfigManager {
             updater.discordWebhookNotifier().close();
         }
         updater.setDiscordWebhookNotifier(new DiscordWebhookNotifier(
-            updater.updaterPlugin().getLogger(),
+            updater.updaterPlugin().getComponentLogger(),
             this.discordWebhookEnabled,
             this.discordWebhookUrl
         ));

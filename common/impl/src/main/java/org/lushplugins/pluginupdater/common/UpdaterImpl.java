@@ -46,7 +46,7 @@ public class UpdaterImpl<T> {
         
         // Initialize Discord webhook notifier
         this.discordWebhookNotifier = new DiscordWebhookNotifier(
-            updaterPlugin.getLogger(),
+            updaterPlugin.getComponentLogger(),
             config.isDiscordWebhookEnabled(),
             config.getDiscordWebhookUrl()
         );

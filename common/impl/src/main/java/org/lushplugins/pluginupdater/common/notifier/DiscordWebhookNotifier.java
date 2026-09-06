@@ -4,6 +4,7 @@ import io.github._4drian3d.jdwebhooks.component.Component;
 import io.github._4drian3d.jdwebhooks.component.ContainerableComponent;
 import io.github._4drian3d.jdwebhooks.webhook.WebHookClient;
 import io.github._4drian3d.jdwebhooks.webhook.WebHookExecution;
+import net.kyori.adventure.text.logger.slf4j.ComponentLogger;
 import org.jetbrains.annotations.Nullable;
 import org.lushplugins.pluginupdater.api.updater.PluginData;
 import org.lushplugins.pluginupdater.api.version.Version;
@@ -11,15 +12,13 @@ import org.lushplugins.pluginupdater.api.version.Version;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class DiscordWebhookNotifier {
-    private final Logger logger;
+    private final ComponentLogger logger;
     private final WebHookClient webhookClient;
     private final boolean enabled;
 
-    public DiscordWebhookNotifier(Logger logger, boolean enabled, @Nullable String webhookUrl) {
+    public DiscordWebhookNotifier(ComponentLogger logger, boolean enabled, @Nullable String webhookUrl) {
         this.logger = logger;
         this.enabled = enabled && webhookUrl != null && !webhookUrl.isBlank();
 
@@ -80,20 +79,14 @@ public class DiscordWebhookNotifier {
                     int statusCode = response.statusCode();
 
                     if (throwable != null) {
-                        logger.log(Level.WARNING, "Failed to send Discord webhook notification", throwable);
+                        logger.warn("Failed to send Discord webhook notification", throwable);
                     } else if (statusCode < 200 || statusCode >= 300) {
-                        logger.log(
-                            Level.WARNING,
-                            () -> "Discord webhook returned unsuccessful response. Status code: "
-                                + statusCode
-                                + ", response: "
-                                + response
-                        );
+                        logger.warn("Discord webhook returned unsuccessful response. Status code: {}, response: {}", statusCode, response);
                     }
                 });
 
         } catch (Exception e) {
-            logger.log(Level.WARNING, "Failed to send Discord webhook notification", e);
+            logger.warn("Failed to send Discord webhook notification", e);
         }
     }
 
