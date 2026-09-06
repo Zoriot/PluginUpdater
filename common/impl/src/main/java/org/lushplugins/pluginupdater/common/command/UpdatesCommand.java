@@ -1,9 +1,9 @@
 package org.lushplugins.pluginupdater.common.command;
 
 import org.lushplugins.pluginupdater.api.version.Version;
-import org.lushplugins.pluginupdater.common.command.annotation.CommandPermission;
-import org.lushplugins.pluginupdater.common.UpdaterImpl;
 import org.lushplugins.pluginupdater.api.version.VersionDifference;
+import org.lushplugins.pluginupdater.common.UpdaterImpl;
+import org.lushplugins.pluginupdater.common.command.annotation.CommandPermission;
 import org.lushplugins.pluginupdater.common.config.ConfigManager;
 import revxrsal.commands.annotation.CommandPlaceholder;
 import revxrsal.commands.annotation.Subcommand;
@@ -17,7 +17,7 @@ import java.util.List;
 public record UpdatesCommand(UpdaterImpl<?> updater) implements OrphanCommand {
 
     @CommandPlaceholder
-    @CommandPermission("pluginupdater.checkupdates")
+    @CommandPermission("pluginupdater.updates.checkupdates")
     public static String updates(UpdaterImpl<?> updater) {
         ConfigManager configManager = updater.config();
         List<String> plugins = configManager.getAllPluginData().stream()
@@ -75,7 +75,7 @@ public record UpdatesCommand(UpdaterImpl<?> updater) implements OrphanCommand {
     }
 
     @Subcommand("list")
-    @CommandPermission("pluginupdater.checkupdates")
+    @CommandPermission("pluginupdater.updates.checkupdates")
     public static String listUpdates(UpdaterImpl<?> updater) {
         ConfigManager configManager = updater.config();
         String updateAvailableColor = configManager.getMessage("update-available-color", "<#ffda54>");
