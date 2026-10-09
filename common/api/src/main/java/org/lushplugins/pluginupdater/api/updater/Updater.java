@@ -115,10 +115,8 @@ public class Updater<T> {
     }
 
     private CompletableFuture<Boolean> download() {
-        Objects.requireNonNull(downloadDir, "downloadDir cannot be null");
-
         return CompletableFuture.supplyAsync(() -> {
-            boolean success = pluginData.downloadUpdate(downloadDir);
+            boolean success = platform.downloadUpdate(pluginData, plugin, downloadDir);
 
             if (success) {
                 pluginData.versionDifference(VersionDifference.UNKNOWN);

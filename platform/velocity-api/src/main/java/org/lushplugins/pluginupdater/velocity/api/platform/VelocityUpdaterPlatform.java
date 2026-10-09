@@ -25,6 +25,11 @@ public class VelocityUpdaterPlatform implements UpdaterPlatform<Player> {
     }
 
     @Override
+    public boolean supportsInPlaceUpdates() {
+        return true;
+    }
+
+    @Override
     public @Nullable PluginInfo getPlugin(String name) {
         PluginContainer plugin = server.getPluginManager().getPlugin(name).orElseGet(() -> {
             return server.getPluginManager().getPlugins().stream()

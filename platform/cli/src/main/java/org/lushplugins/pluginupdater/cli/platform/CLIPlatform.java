@@ -65,6 +65,11 @@ public class CLIPlatform implements UpdaterPlatform<Object> {
     }
 
     @Override
+    public boolean supportsInPlaceUpdates() {
+        return true;
+    }
+
+    @Override
     public @Nullable CLIPluginInfo getPlugin(String name) {
         return plugins.get(name);
     }

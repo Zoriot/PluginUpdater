@@ -122,7 +122,9 @@ public class UpdateHandler<T> {
                     }
 
                     try {
-                        if (pluginData.downloadUpdate(updater.updaterPlugin().getDownloadDir())) {
+                        if (updater.platform().downloadUpdate(pluginData,
+                            updater.platform().getPlugin(pluginData.pluginName()),
+                            updater.updaterPlugin().getDownloadDir())) {
                             pluginData.versionDifference(VersionDifference.UNKNOWN);
                             pluginData.setAlreadyDownloaded(true);
 
@@ -134,6 +136,7 @@ public class UpdateHandler<T> {
                             processingData.getFuture().complete(false);
                         }
                     } catch (Exception e) {
+                        updater.updaterPlugin().getComponentLogger().error("Failed to download update for plugin '{}'.", pluginData.pluginName(), e);
                         processingData.getFuture().completeExceptionally(e);
                     }
 

@@ -204,9 +204,24 @@ public class PluginData {
     }
 
     public boolean downloadUpdate(Path destinationDir) {
+        return downloadUpdate(destinationDir, null);
+    }
+
+    /**
+     * Downloads beside the original jar, retaining the release filename and removing the old jar after validation.
+     */
+    public boolean downloadUpdateBeside(Path originalJar) {
+        return downloadUpdate(null, Objects.requireNonNull(originalJar, "originalJar cannot be null"));
+    }
+
+    private boolean downloadUpdate(@Nullable Path destinationDir, @Nullable Path originalJar) {
         try {
-            prepareDownloadableRelease()
-                .downloadTo(destinationDir);
+            DownloadableRelease release = prepareDownloadableRelease();
+            if (originalJar != null) {
+                release.downloadBeside(originalJar);
+            } else {
+                release.downloadTo(Objects.requireNonNull(destinationDir, "downloadDir cannot be null"));
+            }
             return true;
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();

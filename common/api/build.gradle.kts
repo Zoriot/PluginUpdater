@@ -20,4 +20,11 @@ dependencies {
     api("net.kyori:adventure-text-logger-slf4j:5.2.0")
     api("org.slf4j:slf4j-api:2.0.17")
     compileOnlyApi("org.jetbrains:annotations:26.1.0")
+
+    testImplementation("org.junit.jupiter:junit-jupiter:6.1.3")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+}
+
+tasks.test {
+    useJUnitPlatform()
 }
