@@ -5,11 +5,11 @@ plugins {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:26.1.2.build.70-stable")
+    compileOnly("io.papermc.paper:paper-api:26.2.build.+")
 
     implementation(project(":common:impl"))
     implementation(project(":platform:paper-api"))
-    implementation("io.github.revxrsal:lamp.bukkit:4.0.0-rc.18")
+    implementation("io.github.revxrsal:lamp.bukkit:4.0.0-rc.19")
 
     testImplementation(project(":tests:common-plugins-test"))
     testImplementation("org.junit.jupiter:junit-jupiter:6.1.3")
