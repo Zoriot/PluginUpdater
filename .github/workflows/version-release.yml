@@ -74,9 +74,11 @@ jobs:
           files: |
             platform/*-plugin/build/libs/*.jar
             platform/cli/build/libs/*.jar
+            platform/geyser-extension/build/libs/*.jar
 
       - name: Post Modrinth Release
         if: env.MODRINTH_TOKEN != ''
         run: |
           chmod +x ./gradlew
+          ./gradlew platform:geyser-extension:modrinth
           ./gradlew platform:paper-plugin:modrinth

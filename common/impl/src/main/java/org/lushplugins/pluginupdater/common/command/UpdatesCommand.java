@@ -95,7 +95,7 @@ public record UpdatesCommand(UpdaterImpl<?> updater) implements OrphanCommand {
 
             Version latestVersion = pluginData.latestVersion().orElseThrow();
             String updateColor = versionDifference.equals(VersionDifference.MAJOR) ? majorUpdateAvailableColor : updateAvailableColor;
-            String message = "%s<white>%s: <gray>%s</gray> -> %s%s%s%s</white>"
+            String message = "%s<white>%s: <gray>%s</gray> -></white> %s%s%s%s"
                 .formatted(
                     interactComponent,
                     pluginData.pluginName(),
@@ -103,7 +103,7 @@ public record UpdatesCommand(UpdaterImpl<?> updater) implements OrphanCommand {
                     updateColor,
                     pluginData.latestVersion().orElseThrow().rawVersionString(),
                     closeRawComponent(updateColor),
-                    !interactComponent.isBlank() ? "</interact>" : ""
+                    !interactComponent.isBlank() ? "</hover>" : ""
                 );
 
             if (latestVersion.hasWarningTags()) {
