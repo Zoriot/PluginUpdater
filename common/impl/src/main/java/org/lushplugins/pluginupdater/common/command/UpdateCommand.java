@@ -1,13 +1,12 @@
 package org.lushplugins.pluginupdater.common.command;
 
-import org.lushplugins.pluginupdater.api.version.Version;
-import org.lushplugins.pluginupdater.common.command.annotation.CommandPermission;
-import org.lushplugins.pluginupdater.common.UpdaterImpl;
-import org.lushplugins.pluginupdater.common.updater.UpdateHandler;
 import org.lushplugins.pluginupdater.api.updater.PluginData;
+import org.lushplugins.pluginupdater.api.version.Version;
 import org.lushplugins.pluginupdater.api.version.VersionDifference;
+import org.lushplugins.pluginupdater.common.UpdaterImpl;
+import org.lushplugins.pluginupdater.common.command.annotation.CommandPermission;
 import org.lushplugins.pluginupdater.common.command.annotation.PluginName;
-import revxrsal.commands.annotation.Command;
+import org.lushplugins.pluginupdater.common.updater.UpdateHandler;
 import revxrsal.commands.annotation.Subcommand;
 import revxrsal.commands.annotation.Switch;
 import revxrsal.commands.command.CommandActor;
@@ -53,7 +52,7 @@ public record UpdateCommand(UpdaterImpl<?> updater) implements OrphanCommand {
         }
     }
 
-    @Command("update all")
+    @Subcommand("update all")
     @CommandPermission("pluginupdater.downloadupdates")
     public void updateAll(
         CommandActor actor,
