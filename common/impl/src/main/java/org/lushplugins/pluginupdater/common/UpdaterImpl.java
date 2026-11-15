@@ -54,7 +54,7 @@ public class UpdaterImpl<T> {
                 .addContextParameter(UpdaterImpl.class, (parameter, context) -> this))
             .suggestionProviders(providers -> providers
                 .addProviderForAnnotation(PluginName.class, (annotation) -> (context) -> {
-                    if (annotation.includeTags()) {
+                    if (annotation.includeTags() && context.input().hasRemaining()) {
                         switch (context.input().peek()) {
                             case '$' -> {
                                 return SourceRegistry.values().stream()
